@@ -34,9 +34,47 @@ namespace vs_project
                 this.dateReceiptOnWork = dateTime;
             }
 
+            public DateTime GetDateReceiptOnWork() {
+                return dateReceiptOnWork;
+            }
+
             public override string ToString()
             {
                 return "";
+            }
+        }
+
+        #endregion
+
+        #region структура фильтра по опыту работы сотрудника
+
+        struct ExperienceFilter
+        {
+            private uint ages;
+            
+            public ExperienceFilter(uint ages)
+            {
+                this.ages = ages;
+            }
+
+            public void ChangeFilterValue(uint ages)
+            {
+                this.ages = ages;
+            }
+
+            public List<Worker> FilterWorkers(List<Worker> workers)
+            {
+                List<Worker> filteredWorkers = new List<Worker>();
+                foreach (Worker w in workers)
+                {
+                    uint exp = (uint)(DateTime.Now.Year - w.GetDateReceiptOnWork().Year);
+                    if (exp > ages || ages == 0)
+                    {
+                        filteredWorkers.Add(w);
+                    }
+                }
+
+                return filteredWorkers;
             }
         }
 
