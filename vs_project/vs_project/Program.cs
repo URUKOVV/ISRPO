@@ -46,8 +46,12 @@ namespace vs_project
         static void addWorker(ref List<Worker> workers)
         {
             Console.Clear();
-
-            
+            Console.WriteLine("Введите имя:");
+            String name=Console.ReadLine();
+            Console.WriteLine("Введите фамилию:");
+            String surname = Console.ReadLine();
+            Console.WriteLine("Введит отчество:");
+            String patronymic=Console.ReadLine();
         }
 
         static void writeAllWorkers(ref List<Worker> workers)
