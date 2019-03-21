@@ -103,6 +103,20 @@ namespace vs_project
         }
         #endregion
 
+        #region Структура для вывода всех сотрудников
+        struct WriteWorkers
+        {
+            static void WriteAllWorkers(List<Worker> workers)
+            {
+                List<Worker> workman = new List<Worker>();
+                foreach (Worker w in workers)
+                {
+                    workman.Add(w);
+                }
+            }
+        }
+        #endregion
+
         static void Main(string[] args)
         {
             List<Worker> workers=new List<Worker>();
