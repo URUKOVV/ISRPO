@@ -8,9 +8,11 @@ namespace vs_project
 {
     class Program
     {
-        #region Объявление перечилений Position и Gender
+        #region Объявление перечислений Position и Gender
 
+        // Должность работника
         enum Position { MANAGER, DIRECTOR, PROGRAMMER };
+        // Пол работника
         enum Gender { Male, Female };
 
         #endregion
@@ -32,6 +34,15 @@ namespace vs_project
             private Gender gender;
             private DateTime dateReceiptOnWork;
 
+            /* Создание нового сотрудника
+             * Поля: 
+             *  name=Имя
+             *  surname=Фамилия
+             *  patronymic=Отчество
+             *  position=Должность
+             *  gender=Пол работника
+             *  dateTime=Дата приема на работу
+            */
             public Worker(string name, string surname, string patronymic, Position position, Gender gender, DateTime dateTime)
             {
                 this.name = name;
@@ -42,6 +53,7 @@ namespace vs_project
                 this.dateReceiptOnWork = dateTime;
             }
 
+            // Получение даты поступления работника
             public DateTime GetDateReceiptOnWork() {
                 return dateReceiptOnWork;
             }
@@ -183,6 +195,8 @@ namespace vs_project
             List<Worker> workers=new List<Worker>();
             //Объвление переменной для работы с меню
             ConsoleKeyInfo key;
+            ExperienceFilter filter = new ExperienceFilter(10);
+
             //Цикл для взаимодействия пользователя с программой
             do
             {
@@ -206,8 +220,7 @@ namespace vs_project
                         Console.ReadKey();
                         break;
                     case (ConsoleKey.D3):
-                        //Вызов метода для вывода работников удовлетворяющих фильтру
-                        Worker.FiltrWorker(ref workers);
+                        workers = filter.FilterWorkers(workers);
                         Console.ReadKey();
                         break;
                     default:

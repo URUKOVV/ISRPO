@@ -5,3 +5,10 @@ C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\v
 C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.csproj.CoreCompileInputs.cache
 C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.exe
 C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.pdb
+C:\VOLODYA\ISRPO\vs_project\vs_project\bin\Debug\vs_project.exe.config
+C:\VOLODYA\ISRPO\vs_project\vs_project\bin\Debug\vs_project.exe
+C:\VOLODYA\ISRPO\vs_project\vs_project\bin\Debug\vs_project.pdb
+C:\VOLODYA\ISRPO\vs_project\vs_project\obj\Debug\vs_project.csprojAssemblyReference.cache
+C:\VOLODYA\ISRPO\vs_project\vs_project\obj\Debug\vs_project.csproj.CoreCompileInputs.cache
+C:\VOLODYA\ISRPO\vs_project\vs_project\obj\Debug\vs_project.exe
+C:\VOLODYA\ISRPO\vs_project\vs_project\obj\Debug\vs_project.pdb
