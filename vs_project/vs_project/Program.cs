@@ -8,11 +8,9 @@ namespace vs_project
 {
     class Program
     {
-        #region Объявление перечислений Position и Gender
+        #region Объявление перечилений Position и Gender
 
-        // Должность работника
         enum Position { MANAGER, DIRECTOR, PROGRAMMER };
-        // Пол работника
         enum Gender { Male, Female };
 
         #endregion
@@ -34,15 +32,6 @@ namespace vs_project
             private Gender gender;
             private DateTime dateReceiptOnWork;
 
-            /* Создание нового сотрудника
-             * Поля: 
-             *  name=Имя
-             *  surname=Фамилия
-             *  patronymic=Отчество
-             *  position=Должность
-             *  gender=Пол работника
-             *  dateTime=Дата приема на работу
-            */
             public Worker(string name, string surname, string patronymic, Position position, Gender gender, DateTime dateTime)
             {
                 this.name = name;
@@ -53,7 +42,6 @@ namespace vs_project
                 this.dateReceiptOnWork = dateTime;
             }
 
-            // Получение даты поступления работника
             public DateTime GetDateReceiptOnWork() {
                 return dateReceiptOnWork;
             }
@@ -137,6 +125,20 @@ namespace vs_project
                 //Добавление сотрудника в лист
                 list.Add(worker);
             }
+
+            //Метод фильтрации данных
+            public static void FiltrWorker(ref List<Worker> list)
+            {
+                Console.Clear();
+                foreach (var worker in list)
+                {
+                    int staj = DateTime.Now.Year - worker.dateReceiptOnWork.Year;
+                    if (staj >10)
+                    {
+                        worker.WriteWorker();
+                    }
+                }
+            }
         }
 
         #endregion
@@ -157,10 +159,8 @@ namespace vs_project
                 this.ages = ages;
             }
 
-            //Метод фильтрации данных
             public List<Worker> FilterWorkers(List<Worker> workers)
             {
-                Console.Clear();
                 List<Worker> filteredWorkers = new List<Worker>();
                 foreach (Worker w in workers)
                 {
@@ -168,7 +168,6 @@ namespace vs_project
                     if (exp > ages || ages == 0)
                     {
                         filteredWorkers.Add(w);
-                        w.WriteWorker();
                     }
                 }
 
@@ -182,19 +181,22 @@ namespace vs_project
         {
             //Объвление списка работников
             List<Worker> workers=new List<Worker>();
+            
             //Объвление переменной для работы с меню
             ConsoleKeyInfo key;
             ExperienceFilter filter = new ExperienceFilter(10);
-
+            
             //Цикл для взаимодействия пользователя с программой
             do
             {
                 //Вывод информации в консоль для пользователя
                 Console.Clear();
                 Console.WriteLine("Choose action:");
-                Console.WriteLine("1-Add new worker");
-                Console.WriteLine("2-Write all workers");
-                Console.WriteLine("3-Write with filter");
+                Console.WriteLine("1- Add new worker");
+                Console.WriteLine("2- Write all workers");
+                Console.WriteLine("3- Write with filter");
+                Console.WriteLine("4- Set value for filter");
+                Console.WriteLine("Escape- Exit");
                 //Считывание нажатой клавиши в key
                 key = Console.ReadKey();
                 switch (key.Key)
@@ -209,8 +211,13 @@ namespace vs_project
                         Console.ReadKey();
                         break;
                     case (ConsoleKey.D3):
-                        filter.FilterWorkers(workers);
+                        //Вызов метода для вывода работников удовлетворяющих фильтру
+                        Worker.FiltrWorker(ref workers);
                         Console.ReadKey();
+                        break;
+                    case (ConsoleKey.D4):
+                        uint age = UInt32.Parse(Console.ReadLine());
+                        filter.ChangeFilterValue(age);
                         break;
                     default:
                         break;
