@@ -212,7 +212,7 @@ namespace vs_project
                         break;
                     case (ConsoleKey.D3):
                         // Вызов метода для вывода работников удовлетворяющих фильтру
-                        Worker.FiltrWorker(ref workers);
+                        filter.FilterWorkers(workers);
                         Console.ReadKey();
                         break;
                     case (ConsoleKey.D4):
