@@ -135,7 +135,6 @@ namespace vs_project
                     int staj = DateTime.Now.Year - worker.dateReceiptOnWork.Year;
                     if (staj >10)
                     {
-                        Console.WriteLine("true");
                         worker.WriteWorker();
                     }
                 }
@@ -180,32 +179,41 @@ namespace vs_project
 
         static void Main(string[] args)
         {
+            //Объвление списка работников
             List<Worker> workers=new List<Worker>();
+            //Объвление переменной для работы с меню
             ConsoleKeyInfo key;
+            //Цикл для взаимодействия пользователя с программой
             do
             {
+                //Вывод информации в консоль для пользователя
                 Console.Clear();
                 Console.WriteLine("Choose action:");
                 Console.WriteLine("1-Add new worker");
                 Console.WriteLine("2-Write all workers");
                 Console.WriteLine("3-Write with filter");
+                //Считывание нажатой клавиши в key
                 key = Console.ReadKey();
                 switch (key.Key)
                 {
                     case (ConsoleKey.D1):
+                        //Вызов метода для добавления в список нового работника
                         Worker.AddWorker(ref workers);
                         break;
                     case (ConsoleKey.D2):
+                        //Вызов метода для вывода всех работников
                         Worker.WriteAllWorkers(ref workers);
                         Console.ReadKey();
                         break;
                     case (ConsoleKey.D3):
+                        //Вызов метода для вывода работников удовлетворяющих фильтру
                         Worker.FiltrWorker(ref workers);
                         Console.ReadKey();
                         break;
                     default:
                         break;
                 }
+                //Сравнение key с клавишей Escape
             } while (key.Key != ConsoleKey.Escape);
         }
     }
