@@ -137,20 +137,6 @@ namespace vs_project
                 //Добавление сотрудника в лист
                 list.Add(worker);
             }
-
-            //Метод фильтрации данных
-            public static void FiltrWorker(ref List<Worker> list)
-            {
-                Console.Clear();
-                foreach (var worker in list)
-                {
-                    int staj = DateTime.Now.Year - worker.dateReceiptOnWork.Year;
-                    if (staj >10)
-                    {
-                        worker.WriteWorker();
-                    }
-                }
-            }
         }
 
         #endregion
@@ -171,8 +157,10 @@ namespace vs_project
                 this.ages = ages;
             }
 
+            //Метод фильтрации данных
             public List<Worker> FilterWorkers(List<Worker> workers)
             {
+                Console.Clear();
                 List<Worker> filteredWorkers = new List<Worker>();
                 foreach (Worker w in workers)
                 {
@@ -180,6 +168,7 @@ namespace vs_project
                     if (exp > ages || ages == 0)
                     {
                         filteredWorkers.Add(w);
+                        w.WriteWorker();
                     }
                 }
 
@@ -220,7 +209,7 @@ namespace vs_project
                         Console.ReadKey();
                         break;
                     case (ConsoleKey.D3):
-                        workers = filter.FilterWorkers(workers);
+                        filter.FilterWorkers(workers);
                         Console.ReadKey();
                         break;
                     default:
