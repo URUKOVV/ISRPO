@@ -184,6 +184,7 @@ namespace vs_project
             ConsoleKeyInfo key;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Choose action:");
                 Console.WriteLine("1-Add new worker");
                 Console.WriteLine("2-Write all workers");
@@ -196,9 +197,11 @@ namespace vs_project
                         break;
                     case (ConsoleKey.D2):
                         Worker.WriteAllWorkers(ref workers);
+                        Console.ReadKey();
                         break;
                     case (ConsoleKey.D3):
                         Worker.FiltrWorker(ref workers);
+                        Console.ReadKey();
                         break;
                     default:
                         break;
