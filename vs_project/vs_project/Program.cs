@@ -42,6 +42,7 @@ namespace vs_project
             {
                 return "";
             }
+            
             //Метод для вывода работника
             public void WriteWorker()
             {
@@ -53,8 +54,9 @@ namespace vs_project
                 Console.WriteLine($"Name: {dateReceiptOnWork}");
                 Console.WriteLine("______________________*_______________________");
             }
+            
             //Метод для вывода всех работников
-            public static void WriteAllWorkers(IList<Worker> list)
+            public static void WriteAllWorkers(ref List<Worker> list)
             {
                 Console.Clear();
                 foreach (var worker in list)
@@ -62,8 +64,9 @@ namespace vs_project
                     worker.WriteWorker();
                 }
             }
+            
             //Метод для добавления работника
-            public static void AddWorker (IList<Worker> list)
+            public static void AddWorker (ref List<Worker> list)
             {
                 //Структура для добавления
                 Worker worker = new Worker();
@@ -113,6 +116,21 @@ namespace vs_project
                 //Добавление сотрудника в лист
                 list.Add(worker);
             }
+
+            //Метод фильтрации данных
+            public static void FiltrWorker(ref List<Worker> list)
+            {
+                Console.Clear();
+                foreach (var worker in list)
+                {
+                    int staj = DateTime.Now.Year - worker.dateReceiptOnWork.Year;
+                    if (staj >10)
+                    {
+                        Console.WriteLine("true");
+                        worker.WriteWorker();
+                    }
+                }
+            }
         }
 
         #endregion
@@ -151,25 +169,6 @@ namespace vs_project
 
         #endregion
 
-        #region Определение функций для работы с списком
-        static void addWorker(ref List<Worker> workers)
-        {
-            Console.Clear();
-            Console.WriteLine("Введите имя:");
-            String name=Console.ReadLine();
-            Console.WriteLine("Введите фамилию:");
-            String surname = Console.ReadLine();
-            Console.WriteLine("Введит отчество:");
-            String patronymic=Console.ReadLine();
-        }
-        
-
-        static void writeWithFilter(ref List<Worker> workers)
-        {
-
-        }
-        #endregion
-
         static void Main(string[] args)
         {
             List<Worker> workers=new List<Worker>();
@@ -184,13 +183,13 @@ namespace vs_project
                 switch (key.Key)
                 {
                     case (ConsoleKey.D1):
-                        Worker.AddWorker(workers);
+                        Worker.AddWorker(ref workers);
                         break;
                     case (ConsoleKey.D2):
-                        Worker.WriteAllWorkers(workers);
+                        Worker.WriteAllWorkers(ref workers);
                         break;
                     case (ConsoleKey.D3):
-                        writeWithFilter(ref workers);
+                        Worker.FiltrWorker(ref workers);
                         break;
                     default:
                         break;
