@@ -67,12 +67,39 @@ namespace vs_project
             {
                 //Структура для добавления
                 Worker worker = new Worker();
+                Console.Clear();
                 Console.Write("Введите имя нового работника: ");
                 worker.name = Console.ReadLine();
                 Console.Write("Введите фамилию нового работника: ");
                 worker.surname = Console.ReadLine();
                 Console.Write("Введите отчество нового работника: ");
                 worker.patronymic = Console.ReadLine();
+                Console.Write("Выберите должность (1 - Менеджер, 2 - Директор, 3 - Программист): ");
+                string pos = Console.ReadLine();
+                //Выбор должности для сотрудника
+                if (pos == "1")
+                {
+                    worker.position = Position.MANAGER;
+                }
+                if (pos == "2")
+                {
+                    worker.position = Position.DIRECTOR;
+                }
+                if (pos == "3")
+                {
+                    worker.position = Position.PROGRAMMER;
+                }
+                Console.Write("Выберите пол (1 - Мужчина, 2 - Женщина): ");
+                string ven = Console.ReadLine();
+                //Выбор пола сотрудника
+                if (pos == "1")
+                {
+                    worker.gender = Gender.Male;
+                }
+                if (pos == "2")
+                {
+                    worker.gender = Gender.Female;
+                }
                 list.Add(worker);
             }
         }
