@@ -19,10 +19,10 @@ namespace vs_project
         #endregion
 
         #region Объявление структуры Worker
-        //Хранит информацию о работнике и методы для работы с ними.
+        // Хранит информацию о работнике и методы для работы с ними.
         struct Worker
         {
-            /*Поля: 
+            /* Поля: 
              * name=Имя
              * surname=Фамилия
              * patronymic=Отчество
@@ -58,13 +58,8 @@ namespace vs_project
             public DateTime GetDateReceiptOnWork() {
                 return dateReceiptOnWork;
             }
-
-            public override string ToString()
-            {
-                return "";
-            }
             
-            //Метод для вывода работника
+            // Метод для вывода работника
             public void WriteWorker()
             {
                 Console.WriteLine($"Name: {name}");
@@ -76,7 +71,7 @@ namespace vs_project
                 Console.WriteLine("______________________*_______________________");
             }
             
-            //Метод для вывода всех работников
+            // Метод для вывода всех работников
             public static void WriteAllWorkers(ref List<Worker> list)
             {
                 Console.Clear();
@@ -86,13 +81,13 @@ namespace vs_project
                 }
             }
             
-            //Метод для добавления работника
+            // Метод для добавления работника
             public static void AddWorker (ref List<Worker> list)
             {
-                //Структура для добавления
+                // Структура для добавления
                 Worker worker = new Worker();
                 Console.Clear();
-                //Ввод имения, фамилии, отчества работника
+                // Ввод имения, фамилии, отчества работника
                 Console.Write("Введите имя нового работника: ");
                 worker.name = Console.ReadLine();
                 Console.Write("Введите фамилию нового работника: ");
@@ -100,10 +95,10 @@ namespace vs_project
                 Console.Write("Введите отчество нового работника: ");
                 worker.patronymic = Console.ReadLine();
 
-                //Ввод должности
+                // Ввод должности
                 Console.Write("Выберите должность (1 - Менеджер, 2 - Директор, 3 - Программист): ");
                 string pos = Console.ReadLine();
-                //Выбор должности для сотрудника
+                // Выбор должности для сотрудника
                 switch (pos)
                 {
                     case "1":
@@ -117,10 +112,10 @@ namespace vs_project
                         break;
                 }
 
-                //Ввод пола
+                // Ввод пола
                 Console.Write("Выберите пол (1 - Мужчина, 2 - Женщина): ");
                 string ven = Console.ReadLine();
-                //Выбор пола сотрудника
+                // Выбор пола сотрудника
                 switch(ven)
                 {
                     case "1":
@@ -131,11 +126,11 @@ namespace vs_project
                         break;
                 }
 
-                //Ввод даты приёма на работу
+                // Ввод даты приёма на работу
                 Console.Write("Введите дату приёма на работу в формате ДД.ММ.ГГГГ: ");
                 worker.dateReceiptOnWork = Convert.ToDateTime(Console.ReadLine());
 
-                //Добавление сотрудника в лист
+                // Добавление сотрудника в лист
                 list.Add(worker);
             }
         }
@@ -146,13 +141,16 @@ namespace vs_project
 
         struct ExperienceFilter
         {
+            // Количество лет стажа для фильтрации
             private uint ages;
             
+            // Инициализация фильтра
             public ExperienceFilter(uint ages)
             {
                 this.ages = ages;
             }
 
+            // Метод изменения значения фильтра
             public void ChangeFilterValue(uint ages)
             {
                 this.ages = ages;
@@ -181,14 +179,14 @@ namespace vs_project
 
         static void Main(string[] args)
         {
-            //Объвление списка работников
+            // Объвление списка работников
             List<Worker> workers=new List<Worker>();
             
-            //Объвление переменной для работы с меню
+            // Объвление переменной для работы с меню
             ConsoleKeyInfo key;
             ExperienceFilter filter = new ExperienceFilter(10);
             
-            //Цикл для взаимодействия пользователя с программой
+            // Цикл для взаимодействия пользователя с программой
             do
             {
                 // Вывод информации в консоль для пользователя
