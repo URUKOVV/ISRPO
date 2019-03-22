@@ -68,12 +68,15 @@ namespace vs_project
                 //Структура для добавления
                 Worker worker = new Worker();
                 Console.Clear();
+                //Ввод имения, фамилии, отчества работника
                 Console.Write("Введите имя нового работника: ");
                 worker.name = Console.ReadLine();
                 Console.Write("Введите фамилию нового работника: ");
                 worker.surname = Console.ReadLine();
                 Console.Write("Введите отчество нового работника: ");
                 worker.patronymic = Console.ReadLine();
+
+                //Ввод должности
                 Console.Write("Выберите должность (1 - Менеджер, 2 - Директор, 3 - Программист): ");
                 string pos = Console.ReadLine();
                 //Выбор должности для сотрудника
@@ -89,6 +92,8 @@ namespace vs_project
                 {
                     worker.position = Position.PROGRAMMER;
                 }
+
+                //Ввод пола
                 Console.Write("Выберите пол (1 - Мужчина, 2 - Женщина): ");
                 string ven = Console.ReadLine();
                 //Выбор пола сотрудника
@@ -100,6 +105,12 @@ namespace vs_project
                 {
                     worker.gender = Gender.Female;
                 }
+
+                //Ввод даты приёма на работу
+                Console.Write("Введите дату приёма на работу в формате ДД.ММ.ГГГГ: ");
+                worker.dateReceiptOnWork = Convert.ToDateTime(Console.ReadLine());
+
+                //Добавление сотрудника в лист
                 list.Add(worker);
             }
         }
