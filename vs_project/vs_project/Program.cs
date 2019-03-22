@@ -88,30 +88,31 @@ namespace vs_project
                 Console.Write("Выберите должность (1 - Менеджер, 2 - Директор, 3 - Программист): ");
                 string pos = Console.ReadLine();
                 //Выбор должности для сотрудника
-                if (pos == "1")
+                switch (pos)
                 {
-                    worker.position = Position.MANAGER;
-                }
-                if (pos == "2")
-                {
-                    worker.position = Position.DIRECTOR;
-                }
-                if (pos == "3")
-                {
-                    worker.position = Position.PROGRAMMER;
+                    case "1":
+                        worker.position = Position.MANAGER;
+                        break;
+                    case "2":
+                        worker.position = Position.DIRECTOR;
+                        break;
+                    case "3":
+                        worker.position = Position.PROGRAMMER;
+                        break;
                 }
 
                 //Ввод пола
                 Console.Write("Выберите пол (1 - Мужчина, 2 - Женщина): ");
                 string ven = Console.ReadLine();
                 //Выбор пола сотрудника
-                if (pos == "1")
+                switch(ven)
                 {
-                    worker.gender = Gender.Male;
-                }
-                if (pos == "2")
-                {
-                    worker.gender = Gender.Female;
+                    case "1":
+                        worker.gender = Gender.Male;
+                        break;
+                    case "2":
+                        worker.gender = Gender.Female;
+                        break;
                 }
 
                 //Ввод даты приёма на работу
