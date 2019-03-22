@@ -62,10 +62,18 @@ namespace vs_project
                     worker.WriteWorker();
                 }
             }
-
+            //Метод для добавления работника
             public static void AddWorker (IList<Worker> list)
             {
-
+                //Структура для добавления
+                Worker worker = new Worker();
+                Console.Write("Введите имя нового работника: ");
+                worker.name = Console.ReadLine();
+                Console.Write("Введите фамилию нового работника: ");
+                worker.surname = Console.ReadLine();
+                Console.Write("Введите отчество нового работника: ");
+                worker.patronymic = Console.ReadLine();
+                list.Add(worker);
             }
         }
 
@@ -116,15 +124,7 @@ namespace vs_project
             Console.WriteLine("Введит отчество:");
             String patronymic=Console.ReadLine();
         }
-
-        /*static void writeAllWorkers(ref List<Worker> workers)
-        {
-            Console.Clear();
-            foreach (Worker w in workers)
-            {
-                w.WriteWorker();
-            }
-        }*/
+        
 
         static void writeWithFilter(ref List<Worker> workers)
         {
@@ -146,10 +146,10 @@ namespace vs_project
                 switch (key.Key)
                 {
                     case (ConsoleKey.D1):
-                        addWorker(ref workers);
+                        Worker.AddWorker(workers);
                         break;
                     case (ConsoleKey.D2):
-                        writeAllWorkers(ref workers);
+                        Worker.WriteAllWorkers(workers);
                         break;
                     case (ConsoleKey.D3):
                         writeWithFilter(ref workers);
