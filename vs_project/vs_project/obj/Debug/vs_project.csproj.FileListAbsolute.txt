@@ -1,0 +1,7 @@
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\bin\Debug\vs_project.exe.config
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\bin\Debug\vs_project.exe
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\bin\Debug\vs_project.pdb
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.csprojAssemblyReference.cache
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.exe
+C:\Users\Дмитрий\Documents\GitHub\ISRPO\vs_project\vs_project\obj\Debug\vs_project.pdb
