@@ -152,8 +152,14 @@ namespace vs_project
 
             // Метод изменения значения фильтра
             public void ChangeFilterValue(uint ages)
-            {
+            {                
                 this.ages = ages;
+            }
+
+            // Метод изменения значения фильтра
+            public uint GetAges()
+            {                
+                return ages;
             }
 
             // Метод фильтрации данных
@@ -217,6 +223,7 @@ namespace vs_project
                         break;
                     case (ConsoleKey.D4):
                         // Вызов метода для изменения значения фильтра
+                        Console.WriteLine($"\nCurrent filter value: {filter.GetAges()}");
                         uint age = UInt32.Parse(Console.ReadLine());
                         filter.ChangeFilterValue(age);
                         break;
