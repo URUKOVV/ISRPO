@@ -42,6 +42,31 @@ namespace vs_project
             {
                 return "";
             }
+            //Метод для вывода работника
+            public void WriteWorker()
+            {
+                Console.WriteLine($"Name: {name}");
+                Console.WriteLine($"Name: {surname}");
+                Console.WriteLine($"Name: {patronymic}");
+                Console.WriteLine($"Name: {position}");
+                Console.WriteLine($"Name: {gender}");
+                Console.WriteLine($"Name: {dateReceiptOnWork}");
+                Console.WriteLine("______________________*_______________________");
+            }
+            //Метод для вывода всех работников
+            public static void WriteAllWorkers(IList<Worker> list)
+            {
+                Console.Clear();
+                foreach (var worker in list)
+                {
+                    worker.WriteWorker();
+                }
+            }
+
+            public static void AddWorker (IList<Worker> list)
+            {
+
+            }
         }
 
         #endregion
@@ -92,28 +117,18 @@ namespace vs_project
             String patronymic=Console.ReadLine();
         }
 
-        static void writeAllWorkers(ref List<Worker> workers)
+        /*static void writeAllWorkers(ref List<Worker> workers)
         {
             Console.Clear();
-        }
+            foreach (Worker w in workers)
+            {
+                w.WriteWorker();
+            }
+        }*/
 
         static void writeWithFilter(ref List<Worker> workers)
         {
 
-        }
-        #endregion
-
-        #region Структура для вывода всех сотрудников
-        struct WriteWorkers
-        {
-            static void WriteAllWorkers(List<Worker> workers)
-            {
-                List<Worker> workman = new List<Worker>();
-                foreach (Worker w in workers)
-                {
-                    workman.Add(w);
-                }
-            }
         }
         #endregion
 
