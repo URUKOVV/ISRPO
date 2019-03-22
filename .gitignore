@@ -1,6 +1,12 @@
 */bin/
 */obj/
+./.vs/
 /.vs/
-vs_project/.vs/
-vs_project/vs_project/obj/
+.vs/
+./vs_project/.vs/
+./vs_project/vs_project/obj/
 *.cache
+vs_project/vs_project/.vs/vs_project/v15/Server/sqlite3/storage.ide-shm
+vs_project/vs_project/.vs/vs_project/v15/Server/sqlite3/storage.ide-wal
+vs_project/vs_project/vs_project/obj/Debug/vs_project.csproj.CoreCompileInputs.cache
+
