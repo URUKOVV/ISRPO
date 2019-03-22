@@ -16,9 +16,17 @@ namespace vs_project
         #endregion
 
         #region Объявление структуры Worker
-
+        //Хранит информацию о работнике и методы для работы с ними.
         struct Worker
         {
+            /*Поля: 
+             * name=Имя
+             * surname=Фамилия
+             * patronymic=Отчество
+             * position=Должность
+             * gender=Пол работника
+             * dateReceiptOnWork=Дата приема на работу
+            */
             private string name, surname, patronymic;
             private Position position;
             private Gender gender;
