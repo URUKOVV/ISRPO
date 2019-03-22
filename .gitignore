@@ -1,0 +1,6 @@
+*/bin/
+*/obj/
+/.vs/
+vs_project/.vs/
+vs_project/vs_project/obj/
+*.cache
