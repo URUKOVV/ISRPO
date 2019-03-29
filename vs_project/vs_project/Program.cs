@@ -158,47 +158,31 @@ namespace vs_project
 
 
             // Метод вывода отфильтрованных данных
-            public static void FilterWorkers(List<Worker> workers, Filter filter) //
+            public static void FilterWorkers(List<Worker> workers, Filter filter)
             {
                 Console.Clear();
                 foreach (Worker w in workers)
                 {
                     // Проверка имени
-                    if (w.name != filter.name && filter.name != "")
-                    {
-                        continue;
-                    }
+                    if (w.name != filter.name && filter.name != "") { continue; }
 
                     // Проверка фамилии
-                    if (w.surname != filter.surname && filter.surname != "")
-                    {
-                        continue;
-                    }
+                    if (w.surname != filter.surname && filter.surname != "") { continue; }
 
                     // Проверка отчества
-                    if (w.patronymic != filter.patronymic && filter.patronymic != "")
-                    {
-                        continue;
-                    }
+                    if (w.patronymic != filter.patronymic && filter.patronymic != "") { continue; }
 
                     // Проверка должности
-                    if (w.position != filter.position && filter.position != "")
-                    {
-                        continue;
-                    }
+                    if (w.position != filter.position && filter.position != "") { continue; }
 
                     // Проверка пола
-                    if (w.gender != filter.gender && filter.gender != "")
-                    {
-                        continue;
-                    }
+                    if (w.gender != filter.gender && filter.gender != "") { continue; }
 
                     // Проверка опыта работы
                     uint exp = (uint)(DateTime.Now.Year - w.GetDateReceiptOnWork().Year);
                     if (exp > filter.ages || filter.ages == 0)
                     {
-                        // Вывод отфильтрованного работника на экран
-                        w.WriteWorker();
+                        w.WriteWorker(); // Вывод отфильтрованного работника на экран
                     }
                 }
             }
