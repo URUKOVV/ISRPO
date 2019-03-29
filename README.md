@@ -1,11 +1,10 @@
 # ISRPO
 ## Команда 17
-
+ - Диаграмма Ганта - https://cloud.gantter.com/ganttercloud/index.html#fileID=7ab0873ef3ce4836a02b8d74796d5cef&amode=cloud
 ### Участники:
  - [Уруков](https://github.com/URUKOVV)
  - [Заграничный](https://github.com/zagran-d)
  - [Быков](https://github.com/MaRoL-s)
- - [Диаграмма Ганта] (https://cloud.gantter.com/ganttercloud/index.html#fileID=7ab0873ef3ce4836a02b8d74796d5cef&amode=cloud)
 
 ### Подготовка:
 
