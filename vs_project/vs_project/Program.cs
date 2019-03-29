@@ -166,31 +166,31 @@ namespace vs_project
                     // Проверка имени
                     if (w.name != filter.name && filter.name != "")
                     {
-                        break;
+                        continue;
                     }
 
                     // Проверка фамилии
                     if (w.surname != filter.surname && filter.surname != "")
                     {
-                        break;
+                        continue;
                     }
 
                     // Проверка отчества
                     if (w.patronymic != filter.patronymic && filter.patronymic != "")
                     {
-                        break;
+                        continue;
                     }
 
                     // Проверка должности
                     if (w.position != filter.position && filter.position != "")
                     {
-                        break;
+                        continue;
                     }
 
                     // Проверка пола
                     if (w.gender != filter.gender && filter.gender != "")
                     {
-                        break;
+                        continue;
                     }
 
                     // Проверка опыта работы
