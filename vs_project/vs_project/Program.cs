@@ -211,61 +211,59 @@ namespace vs_project
                 // Подменю изменения значений фильтра
                 Console.Clear();
                 Console.WriteLine("Выберите какое поле фильтра изменить:");
-                Console.WriteLine("1 - Имя");
-                Console.WriteLine("2 - Фамилия");
-                Console.WriteLine("3 - Отчество");
-                Console.WriteLine("4 - Должность");
-                Console.WriteLine("5 - Пол");
-                Console.WriteLine("6 - Стаж работы");
+                Console.WriteLine($"1 - Имя ({name})");
+                Console.WriteLine($"2 - Фамилия ({surname})");
+                Console.WriteLine($"3 - Отчество ({patronymic})");
+                Console.WriteLine($"4 - Должность ({position})");
+                Console.WriteLine($"5 - Пол ({gender})");
+                Console.WriteLine($"6 - Стаж работы ({ages})");
 
                 // Считывание нажатой клавиши
                 switch (Console.ReadKey().Key)
                 {
                     // Изменение значение фильтрации по имени
                     case (ConsoleKey.D1):
-                        Console.Write($"\nТекущее значение поля фильтра: {name}\nВведите новое значение:");
+                        Console.Write("\nВведите новое значение:");
                         name = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по фимилии
                     case (ConsoleKey.D2):
-                        Console.Write($"\nТекущее значение поля фильтра: {surname}\nВведите новое значение:");
+                        Console.Write("\nВведите новое значение:");
                         surname = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по отчеству
                     case (ConsoleKey.D3):
-                        Console.Write($"\nТекущее значение поля фильтра: {patronymic}\nВведите новое значение:");
+                        Console.Write("\nВведите новое значение:");
                         patronymic = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по должности
                     case (ConsoleKey.D4):
-                        Console.Write($"\nТекущее значение поля фильтра: {position}\nВведите новое значение:");
+                        Console.Write("\nВведите новое значение:");
                         position = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по полу
                     case (ConsoleKey.D5):
-                        Console.Write($"\nТекущее значение поля фильтра: {gender}\nВведите новое значение:");
+                        Console.Write("\nВведите новое значение:");
                         gender = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по стажу
                     case (ConsoleKey.D6):
-                        Console.WriteLine($"\nТекущее значение поля фильтра: {ages}");
-                        bool done = false;
-                        while (!done)
+                        while (true)
                         {
                             try
                             {
-                                Console.Write("Введите новое значение: ");
+                                Console.Write("\nВведите новое значение: ");
                                 ages = UInt32.Parse(Console.ReadLine());
-                                done = true;
+                                break;
                             }
                             catch
                             {
-                                Console.WriteLine("Ошибка: неверный формат");
+                                Console.WriteLine("\nОшибка: неверный формат");
                             }
                         }
                         break;
