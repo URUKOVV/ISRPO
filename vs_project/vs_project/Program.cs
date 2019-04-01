@@ -10,86 +10,65 @@ namespace vs_project
     {
         static void Main(string[] args)
         {
-            // Объвление списка работников
-            List<Worker> workers = new List<Worker>();
-            
-            // Объвление переменной для работы с меню
-            ConsoleKeyInfo key;
-            Filter filter = new Filter("", "", "", "", "", 0);
-            
-            // Цикл для взаимодействия пользователя с программой
+            // Список работников
+            List<Worker> workers = new List<Worker>();           
+            Filter filter = new Filter();
+
+            // Бесконечный цикл работы программы
             do
             {
-                // Вывод информации в консоль для пользователя
+                // Вывод главного меню
                 Console.Clear();
                 Console.WriteLine("Выберите действие:");
                 Console.WriteLine("1 - Добавить нового сотрудника");
                 Console.WriteLine("2 - Вывести всех сотрудников");
                 Console.WriteLine("3 - Вывести отфильтрованных сотрудников");
                 Console.WriteLine("4 - Установить параметры фильтра");
-                Console.WriteLine("Escape - Выход");
 
-                // Считывание нажатой клавиши в key
-                key = Console.ReadKey();
-                switch (key.Key)
+                // Ожидание ввода пользователя и обработка
+                switch (Console.ReadLine())
                 {
-                    // Вызов метода для добавления в список нового работника
-                    case (ConsoleKey.D1):
+                    // Добавления в список нового работника
+                    case ("1"):
                         Worker.AddWorker(ref workers);
                         break;
 
-                    // Вызов метода для вывода всех работников
-                    case (ConsoleKey.D2):
+                    // Вывод всех работников
+                    case ("2"):
                         Worker.WriteAllWorkers(ref workers);
                         Console.ReadKey();
                         break;
 
-                    // Вызов метода для вывода работников удовлетворяющих фильтру
-                    case (ConsoleKey.D3):
+                    // Вывод работников удовлетворяющих фильтру
+                    case ("3"):
                         Worker.FilterWorkers(workers, filter);
                         Console.ReadKey();
                         break;
 
-                    // Вызов метода для изменения значения фильтра
-                    case (ConsoleKey.D4):
+                    // Изменение значениий фильтра
+                    case ("4"):
                         filter.ChangeFilterValue();
                         break;
-                }
 
-            // Сравнение key с клавишей Escape (выход из программы)
-            } while (key.Key != ConsoleKey.Escape);
+                    // Выход из программы
+                    default: 
+                        Environment.Exit(0);
+                        break;
+                }
+            } while (true);
         }
 
-        #region Объявление структуры Worker
-        // Хранит информацию о работнике и методы для работы с ними.
+        #region Структура Worker
+
+        // Хранит информацию о работнике и методы для работы с ними
         struct Worker
         {
-            private string name, surname, patronymic; // Имя, Фамилия, Отчество
-            private string position; // Должность
-            private string gender; // Пол
-            private DateTime dateReceiptOnWork; // Дата приема на работу
+            private string name, surname, patronymic;   // Имя, Фамилия, Отчество
+            private string position;                    // Должность
+            private string gender;                      // Пол
+            private DateTime dateReceiptOnWork;         // Дата приема на работу
 
-            /* 
-             Создание нового сотрудника
-             Поля: 
-              name=Имя
-              surname=Фамилия
-              patronymic=Отчество
-              position=Должность
-              gender=Пол работника
-              dateReceiptOnWork=Дата приема на работу
-            */
-            public Worker(string name, string surname, string patronymic, string position, string gender, DateTime dateReceiptOnWork)
-            {
-                this.name = name;
-                this.surname = surname;
-                this.patronymic = patronymic;
-                this.position = position;
-                this.gender = gender;
-                this.dateReceiptOnWork = dateReceiptOnWork;
-            }
-
-            // Метод для вывода работника
+            // Вывод работника
             public void WriteWorker()
             {
                 Console.WriteLine($"Имя: {name}");
@@ -101,7 +80,7 @@ namespace vs_project
                 Console.WriteLine("_______________________________________________");
             }
 
-            // Метод для вывода всех работников
+            // Вывод всех работников
             public static void WriteAllWorkers(ref List<Worker> list)
             {
                 Console.Clear();
@@ -111,48 +90,87 @@ namespace vs_project
                 }
             }
 
-            // Метод для добавления работника
+            // Добавление работника
             public static void AddWorker(ref List<Worker> list)
             {
-                // Структура для добавления
+                // Работник
                 Worker worker = new Worker();
                 Console.Clear();
 
-                // Ввод имения, фамилии, отчества работника
-                Console.Write("Введите имя нового работника: ");
-                worker.name = Console.ReadLine();
-                Console.Write("Введите фамилию нового работника: ");
-                worker.surname = Console.ReadLine();
-                Console.Write("Введите отчество нового работника: ");
-                worker.patronymic = Console.ReadLine();
-                
-                // Ввод должности
-                Console.Write("Выберите должность: ");
-                worker.position = Console.ReadLine();
-
-                // Ввод пола
-                Console.Write("Выберите пол: ");
-                worker.gender = Console.ReadLine();
-
-                // Ввод даты приёма на работу
-                DateTime emptyObject = new DateTime(); // Пустое значение времени для проверки выхода из цикла ввода
-                while (worker.dateReceiptOnWork == emptyObject)  {
-                    try
+                // Ввод данных работника
+                try
+                {
+                    // Имя
+                    Console.Write("Введите имя нового работника: ");
+                    worker.name = Console.ReadLine();
+                    while (String.IsNullOrEmpty(worker.name.Trim()))
                     {
-                        Console.Write("Введите дату приёма на работу в формате ДД.ММ.ГГГГ: ");
-                        worker.dateReceiptOnWork = Convert.ToDateTime(Console.ReadLine());
-                    } catch
+                        Console.Write("Повторите ввод имени:");
+                        worker.name = Console.ReadLine();
+                    }
+
+                    // Фамилия
+                    Console.Write("Введите фамилию нового работника: ");
+                    worker.surname = Console.ReadLine();
+                    while (String.IsNullOrEmpty(worker.surname.Trim()))
                     {
-                        Console.Write("Ошибка: неверный формат\n");
+                        Console.Write("Повторите ввод фамилии:");
+                        worker.surname = Console.ReadLine();
+                    }
+
+                    // Отчество
+                    Console.Write("Введите отчество нового работника: ");
+                    worker.patronymic = Console.ReadLine();
+                    while (String.IsNullOrEmpty(worker.patronymic.Trim()))
+                    {
+                        Console.Write("Повторите ввод отчества:");
+                        worker.patronymic = Console.ReadLine();
+                    }
+
+                    // Должность
+                    Console.Write("Выберите должность: ");
+                    worker.position = Console.ReadLine();
+                    while (String.IsNullOrEmpty(worker.position.Trim()))
+                    {
+                        Console.Write("Повторите ввод должности:");
+                        worker.position = Console.ReadLine();
+                    }
+
+                    // Пол
+                    Console.Write("Выберите пол: ");
+                    worker.gender = Console.ReadLine();
+                    while (String.IsNullOrEmpty(worker.gender.Trim()))
+                    {
+                        Console.Write("Повторите ввод пола:");
+                        worker.gender = Console.ReadLine();
+                    }
+
+                    // Дата приёма на работу
+                    DateTime emptyTime = new DateTime();
+                    while (worker.dateReceiptOnWork == emptyTime)
+                    {
+                        try
+                        {
+                            Console.Write("Введите дату приёма на работу в формате ДД.ММ.ГГГГ: ");
+                            worker.dateReceiptOnWork = Convert.ToDateTime(Console.ReadLine());
+                        }
+                        catch
+                        {
+                            Console.Write("Ошибка: неверный формат\n");
+                        }
                     }
                 }
+                catch
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ошибка: некорректный ввод");
+                }
 
-                // Добавление сотрудника в лист
+                // Добавление сотрудника в список
                 list.Add(worker);
             }
 
-
-            // Метод вывода отфильтрованных данных
+            // Фильтрация и вывод отфильтрованных работников
             public static void FilterWorkers(List<Worker> workers, Filter filter)
             {
                 Console.Clear();
@@ -189,26 +207,15 @@ namespace vs_project
 
         struct Filter
         {
-            public string name, surname, patronymic; // Имя, Фамилия, Отчество
-            public string position; // Должность
-            public string gender; // Пол            
-            public uint ages; // Количество лет стажа для фильтрации
+            public string name, surname, patronymic;    // Имя, Фамилия, Отчество
+            public string position;                     // Должность
+            public string gender;                       // Пол            
+            public uint ages;                           // Количество лет стажа для фильтрации
 
-            // Инициализация фильтра
-            public Filter(string name, string surname, string patronymic, string position, string gender, uint ages)
-            {
-                this.name = name;
-                this.surname = surname;
-                this.patronymic = patronymic;
-                this.position = position;
-                this.gender = gender;
-                this.ages = ages;
-            }
-
-            // Метод изменения значения фильтра
+            // Изменение значения фильтра
             public void ChangeFilterValue()
             {
-                // Подменю изменения значений фильтра
+                // Вывод подменю фильтра
                 Console.Clear();
                 Console.WriteLine("Выберите какое поле фильтра изменить:");
                 Console.WriteLine($"1 - Имя ({name})");
@@ -217,42 +224,43 @@ namespace vs_project
                 Console.WriteLine($"4 - Должность ({position})");
                 Console.WriteLine($"5 - Пол ({gender})");
                 Console.WriteLine($"6 - Стаж работы ({ages})");
+                Console.WriteLine($"Любое другое значение для выхода в главное меню");
 
-                // Считывание нажатой клавиши
-                switch (Console.ReadKey().Key)
+                // Ожидание ввода пользователя и обработка
+                switch (Console.ReadLine())
                 {
                     // Изменение значение фильтрации по имени
-                    case (ConsoleKey.D1):
+                    case ("1"):
                         Console.Write("\nВведите новое значение:");
                         name = Console.ReadLine();
                         break;
 
-                    // Изменение значение фильтрации по фимилии
-                    case (ConsoleKey.D2):
+                    // Изменение значение фильтрации по фамилии
+                    case ("2"):
                         Console.Write("\nВведите новое значение:");
                         surname = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по отчеству
-                    case (ConsoleKey.D3):
+                    case ("3"):
                         Console.Write("\nВведите новое значение:");
                         patronymic = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по должности
-                    case (ConsoleKey.D4):
+                    case ("4"):
                         Console.Write("\nВведите новое значение:");
                         position = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по полу
-                    case (ConsoleKey.D5):
+                    case ("5"):
                         Console.Write("\nВведите новое значение:");
                         gender = Console.ReadLine();
                         break;
 
                     // Изменение значение фильтрации по стажу
-                    case (ConsoleKey.D6):
+                    case ("6"):
                         while (true)
                         {
                             try
