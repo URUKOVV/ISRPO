@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace vs_project
 {
@@ -30,12 +27,12 @@ namespace vs_project
                 {
                     // Добавления в список нового работника
                     case ("1"):
-                        Worker.AddWorker(ref workers);
+                        Worker.Add(ref workers);
                         break;
 
                     // Вывод всех работников
                     case ("2"):
-                        Worker.WriteAllWorkers(ref workers);
+                        Worker.WriteAll(ref workers);
                         Console.ReadKey();
                         break;
 
@@ -47,7 +44,7 @@ namespace vs_project
 
                     // Изменение значениий фильтра
                     case ("4"):
-                        filter.ChangeFilterValue();
+                        filter.ChangeValue();
                         break;
 
                     // Выход из программы
@@ -58,7 +55,7 @@ namespace vs_project
             } while (true);
         }
 
-        #region Структура Worker
+        #region Работник
 
         // Хранит информацию о работнике и методы для работы с ними
         struct Worker
@@ -69,7 +66,7 @@ namespace vs_project
             private DateTime dateReceiptOnWork;         // Дата приема на работу
 
             // Вывод работника
-            public void WriteWorker()
+            public void Write()
             {
                 Console.WriteLine($"Имя: {name}");
                 Console.WriteLine($"Фамилия: {surname}");
@@ -80,18 +77,24 @@ namespace vs_project
                 Console.WriteLine("_______________________________________________");
             }
 
-            // Вывод всех работников
-            public static void WriteAllWorkers(ref List<Worker> list)
+            /// <summary>
+            /// Вывод всех работников
+            /// </summary>
+            /// <param name="list"> Список работников</param>
+            public static void WriteAll(ref List<Worker> list)
             {
                 Console.Clear();
                 foreach (var worker in list)
                 {
-                    worker.WriteWorker();
+                    worker.Write();
                 }
             }
-
-            // Добавление работника
-            public static void AddWorker(ref List<Worker> list)
+            
+            /// <summary>
+            /// Добавление работника
+            /// </summary>
+            /// <param name="list"> Список работников</param>
+            public static void Add(ref List<Worker> list)
             {
                 // Работник
                 Worker worker = new Worker();
@@ -170,7 +173,11 @@ namespace vs_project
                 list.Add(worker);
             }
 
-            // Фильтрация и вывод отфильтрованных работников
+            /// <summary>
+            /// Фильтрация и вывод отфильтрованных работников
+            /// </summary>
+            /// <param name="workers"> Список работников</param>
+            /// <param name="filter"> Фильтр</param>
             public static void FilterWorkers(List<Worker> workers, Filter filter)
             {
                 Console.Clear();
@@ -195,7 +202,7 @@ namespace vs_project
                     uint exp = (uint)(DateTime.Now.Year - w.dateReceiptOnWork.Year);
                     if (exp > filter.ages || filter.ages == 0)
                     {
-                        w.WriteWorker(); // Вывод отфильтрованного работника на экран
+                        w.Write(); // Вывод отфильтрованного работника на экран
                     }
                 }
             }
@@ -203,7 +210,7 @@ namespace vs_project
 
         #endregion
 
-        #region структура фильтра
+        #region Фильтр
 
         struct Filter
         {
@@ -213,7 +220,7 @@ namespace vs_project
             public uint ages;                           // Количество лет стажа для фильтрации
 
             // Изменение значения фильтра
-            public void ChangeFilterValue()
+            public void ChangeValue()
             {
                 // Вывод подменю фильтра
                 Console.Clear();
