@@ -57,7 +57,7 @@ namespace vs_project
 
         #region Работник
 
-        // Хранит информацию о работнике и методы для работы с ними
+        // Работник
         struct Worker
         {
             private string name, surname, patronymic;   // Имя, Фамилия, Отчество
