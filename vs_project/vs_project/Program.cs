@@ -22,28 +22,28 @@ namespace vs_project
                 Console.WriteLine("3 - Вывести отфильтрованных сотрудников");
                 Console.WriteLine("4 - Установить параметры фильтра");
 
-                // Ожидание ввода пользователя и обработка
+                // Ожидание и обработка ввода пользователя
                 switch (Console.ReadLine())
                 {
                     // Добавления в список нового работника
-                    case ("1"):
+                    case "1":
                         Worker.Add(ref workers);
                         break;
 
                     // Вывод всех работников
-                    case ("2"):
-                        Worker.WriteAll(ref workers);
+                    case "2":
+                        Worker.OutAll(ref workers);
                         Console.ReadKey();
                         break;
 
                     // Вывод работников удовлетворяющих фильтру
-                    case ("3"):
-                        Worker.FilterWorkers(workers, filter);
+                    case "3":
+                        Worker.OutFilterWorkers(workers, filter);
                         Console.ReadKey();
                         break;
 
                     // Изменение значениий фильтра
-                    case ("4"):
+                    case "4":
                         filter.ChangeValue();
                         break;
 
@@ -66,7 +66,7 @@ namespace vs_project
             private DateTime dateReceiptOnWork;         // Дата приема на работу
 
             // Вывод работника
-            public void Write()
+            public void Out()
             {
                 Console.WriteLine($"Имя: {name}");
                 Console.WriteLine($"Фамилия: {surname}");
@@ -81,12 +81,12 @@ namespace vs_project
             /// Вывод всех работников
             /// </summary>
             /// <param name="list"> Список работников</param>
-            public static void WriteAll(ref List<Worker> list)
+            public static void OutAll(ref List<Worker> list)
             {
                 Console.Clear();
                 foreach (var worker in list)
                 {
-                    worker.Write();
+                    worker.Out();
                 }
             }
             
@@ -96,7 +96,7 @@ namespace vs_project
             /// <param name="list"> Список работников</param>
             public static void Add(ref List<Worker> list)
             {
-                // Работник
+                // Новый работник
                 Worker worker = new Worker();
                 Console.Clear();
 
@@ -174,35 +174,39 @@ namespace vs_project
             }
 
             /// <summary>
-            /// Фильтрация и вывод отфильтрованных работников
+            /// Вывод отфильтрованных работников
             /// </summary>
             /// <param name="workers"> Список работников</param>
             /// <param name="filter"> Фильтр</param>
-            public static void FilterWorkers(List<Worker> workers, Filter filter)
+            public static void OutFilterWorkers(List<Worker> workers, Filter filter)
             {
                 Console.Clear();
-                foreach (Worker w in workers)
+                foreach (Worker w in workers) // По работникам в списке
                 {
                     // Проверка имени
-                    if (w.name != filter.name && filter.name != "") { continue; }
+                    if(filter.name != null)
+                        if (!w.name.Contains(filter.name) && filter.name != "") continue;
 
                     // Проверка фамилии
-                    if (w.surname != filter.surname && filter.surname != "") { continue; }
+                    if (filter.surname != null)
+                        if (!w.surname.Contains(filter.surname) && filter.surname != "") continue;
 
                     // Проверка отчества
-                    if (w.patronymic != filter.patronymic && filter.patronymic != "") { continue; }
+                    if (filter.patronymic != null)
+                        if (!w.patronymic.Contains(filter.patronymic) && filter.patronymic != "") continue;
 
                     // Проверка должности
-                    if (w.position != filter.position && filter.position != "") { continue; }
+                    if (filter.position != null)
+                        if (!w.position.Contains(filter.position) && filter.position != "") { continue; }
 
                     // Проверка пола
-                    if (w.gender != filter.gender && filter.gender != "") { continue; }
+                    if (filter.gender != null)
+                        if (!w.gender.Contains(filter.gender) && filter.gender != "") { continue; }
 
                     // Проверка стажа работы
-                    uint exp = (uint)(DateTime.Now.Year - w.dateReceiptOnWork.Year);
-                    if (exp > filter.ages || filter.ages == 0)
+                    if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.ages) || filter.ages == 0)
                     {
-                        w.Write(); // Вывод отфильтрованного работника на экран
+                        w.Out(); // Вывод отфильтрованного работника на экран
                     }
                 }
             }
@@ -217,7 +221,7 @@ namespace vs_project
             public string name, surname, patronymic;    // Имя, Фамилия, Отчество
             public string position;                     // Должность
             public string gender;                       // Пол            
-            public uint ages;                           // Количество лет стажа для фильтрации
+            public int ages;                           // Количество лет стажа для фильтрации
 
             // Изменение значения фильтра
             public void ChangeValue()
@@ -273,7 +277,7 @@ namespace vs_project
                             try
                             {
                                 Console.Write("\nВведите новое значение: ");
-                                ages = UInt32.Parse(Console.ReadLine());
+                                ages = Int32.Parse(Console.ReadLine());
                                 break;
                             }
                             catch
