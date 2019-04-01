@@ -197,11 +197,11 @@ namespace vs_project
 
                     // Проверка должности
                     if (filter.position != null)
-                        if (!w.position.Contains(filter.position) && filter.position != "") { continue; }
+                        if (!w.position.Contains(filter.position) && filter.position != "") continue; 
 
                     // Проверка пола
                     if (filter.gender != null)
-                        if (!w.gender.Contains(filter.gender) && filter.gender != "") { continue; }
+                        if (!w.gender.Contains(filter.gender) && filter.gender != "") continue; 
 
                     // Проверка стажа работы
                     if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.ages) || filter.ages == 0)
