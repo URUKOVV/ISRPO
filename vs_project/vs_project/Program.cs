@@ -22,12 +22,12 @@ namespace vs_project
             {
                 // Вывод информации в консоль для пользователя
                 Console.Clear();
-                Console.WriteLine("Choose action:");
-                Console.WriteLine("1 - Add new worker");
-                Console.WriteLine("2 - Write all workers");
-                Console.WriteLine("3 - Write with filter");
-                Console.WriteLine("4 - Set value for filter");
-                Console.WriteLine("Escape - Exit");
+                Console.WriteLine("Выберите действие:");
+                Console.WriteLine("1 - Добавить нового сотрудника");
+                Console.WriteLine("2 - Вывести всех сотрудников");
+                Console.WriteLine("3 - Вывести отфильтрованных сотрудников");
+                Console.WriteLine("4 - Установить параметры фильтра");
+                Console.WriteLine("Escape - Выход");
 
                 // Считывание нажатой клавиши в key
                 key = Console.ReadKey();
@@ -89,20 +89,15 @@ namespace vs_project
                 this.dateReceiptOnWork = dateReceiptOnWork;
             }
 
-            public DateTime GetDateReceiptOnWork()
-            {
-                return dateReceiptOnWork; // Возврат даты поступления работника
-            }
-
             // Метод для вывода работника
             public void WriteWorker()
             {
-                Console.WriteLine($"Name: {name}");
-                Console.WriteLine($"Surname: {surname}");
-                Console.WriteLine($"Patronymic: {patronymic}");
-                Console.WriteLine($"Position: {position}");
-                Console.WriteLine($"Gender: {gender}");
-                Console.WriteLine($"Date receipt on work: {dateReceiptOnWork}");
+                Console.WriteLine($"Имя: {name}");
+                Console.WriteLine($"Фамилия: {surname}");
+                Console.WriteLine($"Отчество: {patronymic}");
+                Console.WriteLine($"Должность: {position}");
+                Console.WriteLine($"Пол: {gender}");
+                Console.WriteLine($"Дата приема на работу: {dateReceiptOnWork}");
                 Console.WriteLine("_______________________________________________");
             }
 
@@ -148,7 +143,7 @@ namespace vs_project
                         worker.dateReceiptOnWork = Convert.ToDateTime(Console.ReadLine());
                     } catch
                     {
-
+                        Console.Write("Ошибка: неверный формат\n");
                     }
                 }
 
@@ -178,8 +173,8 @@ namespace vs_project
                     // Проверка пола
                     if (w.gender != filter.gender && filter.gender != "") { continue; }
 
-                    // Проверка опыта работы
-                    uint exp = (uint)(DateTime.Now.Year - w.GetDateReceiptOnWork().Year);
+                    // Проверка стажа работы
+                    uint exp = (uint)(DateTime.Now.Year - w.dateReceiptOnWork.Year);
                     if (exp > filter.ages || filter.ages == 0)
                     {
                         w.WriteWorker(); // Вывод отфильтрованного работника на экран
@@ -190,7 +185,7 @@ namespace vs_project
 
         #endregion
 
-        #region структура фильтра по опыту работы сотрудника
+        #region структура фильтра
 
         struct Filter
         {
@@ -213,8 +208,68 @@ namespace vs_project
             // Метод изменения значения фильтра
             public void ChangeFilterValue()
             {
-                Console.WriteLine($"\nCurrent filter value: {ages}");
-                ages = UInt32.Parse(Console.ReadLine());
+                // Подменю изменения значений фильтра
+                Console.Clear();
+                Console.WriteLine("Выберите какое поле фильтра изменить:");
+                Console.WriteLine("1 - Имя");
+                Console.WriteLine("2 - Фамилия");
+                Console.WriteLine("3 - Отчество");
+                Console.WriteLine("4 - Должность");
+                Console.WriteLine("5 - Пол");
+                Console.WriteLine("6 - Стаж работы");
+
+                // Считывание нажатой клавиши
+                switch (Console.ReadKey().Key)
+                {
+                    // Изменение значение фильтрации по имени
+                    case (ConsoleKey.D1):
+                        Console.Write($"\nТекущее значение поля фильтра: {name}\nВведите новое значение:");
+                        name = Console.ReadLine();
+                        break;
+
+                    // Изменение значение фильтрации по фимилии
+                    case (ConsoleKey.D2):
+                        Console.Write($"\nТекущее значение поля фильтра: {surname}\nВведите новое значение:");
+                        surname = Console.ReadLine();
+                        break;
+
+                    // Изменение значение фильтрации по отчеству
+                    case (ConsoleKey.D3):
+                        Console.Write($"\nТекущее значение поля фильтра: {patronymic}\nВведите новое значение:");
+                        patronymic = Console.ReadLine();
+                        break;
+
+                    // Изменение значение фильтрации по должности
+                    case (ConsoleKey.D4):
+                        Console.Write($"\nТекущее значение поля фильтра: {position}\nВведите новое значение:");
+                        position = Console.ReadLine();
+                        break;
+
+                    // Изменение значение фильтрации по полу
+                    case (ConsoleKey.D5):
+                        Console.Write($"\nТекущее значение поля фильтра: {gender}\nВведите новое значение:");
+                        gender = Console.ReadLine();
+                        break;
+
+                    // Изменение значение фильтрации по стажу
+                    case (ConsoleKey.D6):
+                        Console.WriteLine($"\nТекущее значение поля фильтра: {ages}");
+                        bool done = false;
+                        while (!done)
+                        {
+                            try
+                            {
+                                Console.Write("Введите новое значение: ");
+                                ages = UInt32.Parse(Console.ReadLine());
+                                done = true;
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Ошибка: неверный формат");
+                            }
+                        }
+                        break;
+                }
             }
         }
 
