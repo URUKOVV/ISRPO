@@ -184,7 +184,7 @@ namespace vs_project
                 foreach (Worker w in workers) // По работникам в списке
                 {
                     // Проверка имени
-                    if(filter.name != null)
+                    if (filter.name != null)
                         if (!w.name.Contains(filter.name) && filter.name != "") continue;
 
                     // Проверка фамилии
