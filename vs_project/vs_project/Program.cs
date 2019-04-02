@@ -206,7 +206,7 @@ namespace vs_project
                     if (!w.gender.Contains(filter.gender) && filter.gender != "") continue;
 
                     // Проверка максимального стажа работы
-                    if (!(w.dateReceiptOnWork > DateTime.Now.AddYears(-filter.maxAges) || filter.maxAges == 0)) continue;
+                    if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.maxAges) && filter.maxAges != 0) continue;
 
                     // Проверка минимального стажа работы
                     if (w.dateReceiptOnWork <= DateTime.Now.AddYears(-filter.minAges) || filter.minAges == 0)
