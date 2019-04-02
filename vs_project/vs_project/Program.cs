@@ -226,13 +226,13 @@ namespace vs_project
             // Инициализация фильтра
             public void init()
             {
-                this.name = "";
-                this.surname = "";
-                this.patronymic = "";
-                this.position = "";
-                this.gender = "";
-                this.minAges = 0;
-                this.maxAges = 0;
+                name = "";
+                surname = "";
+                patronymic = "";
+                position = "";
+                gender = "";
+                minAges = 0;
+                maxAges = 0;
             }
 
             // Изменение значения фильтра
