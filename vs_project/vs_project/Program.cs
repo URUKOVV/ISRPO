@@ -262,25 +262,25 @@ namespace vs_project
                     // Изменение значение фильтрации по фамилии
                     case ("2"):
                         Console.Write("\nВведите новое значение:");
-                        surname = Console.ReadLine();
+                        surname = Console.ReadLine().Trim();
                         break;
 
                     // Изменение значение фильтрации по отчеству
                     case ("3"):
                         Console.Write("\nВведите новое значение:");
-                        patronymic = Console.ReadLine();
+                        patronymic = Console.ReadLine().Trim();
                         break;
 
                     // Изменение значение фильтрации по должности
                     case ("4"):
                         Console.Write("\nВведите новое значение:");
-                        position = Console.ReadLine();
+                        position = Console.ReadLine().Trim();
                         break;
 
                     // Изменение значение фильтрации по полу
                     case ("5"):
                         Console.Write("\nВведите новое значение:");
-                        gender = Console.ReadLine();
+                        gender = Console.ReadLine().Trim();
                         break;
 
                     // Изменение минимального значения фильтрации по стажу
