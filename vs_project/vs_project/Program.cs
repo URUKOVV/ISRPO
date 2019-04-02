@@ -223,7 +223,7 @@ namespace vs_project
             public string gender;                       // Пол            
             public int minAges, maxAges;                // Минимальное и максимальное значение диапозона стажа
 
-
+            // Инициализация фильтра
             public void init()
             {
                 this.name = "";
