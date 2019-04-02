@@ -249,7 +249,7 @@ namespace vs_project
                 Console.WriteLine($"5 - Пол ({gender})");
                 Console.WriteLine($"6 - Минимальный стаж работы ({minAges})");
                 Console.WriteLine($"7 - Максимальный стаж работы ({maxAges})");
-                Console.WriteLine("Любое другое значение для выхода в главное меню");
+                Console.WriteLine("Любое другое значение для возврата в главное меню");
 
                 // Ожидание ввода пользователя и обработка
                 switch (Console.ReadLine())
