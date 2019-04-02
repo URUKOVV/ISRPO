@@ -12,7 +12,7 @@ namespace vs_project
 
             // Фильтр
             Filter filter = new Filter();
-            filter.init();
+            filter.Init();
 
             // Бесконечный цикл работы программы
             do
@@ -225,7 +225,7 @@ namespace vs_project
             public int minAges, maxAges;                // Минимальное и максимальное значение диапозона стажа
 
             // Инициализация фильтра
-            public void init()
+            public void Init()
             {
                 name = "";
                 surname = "";
