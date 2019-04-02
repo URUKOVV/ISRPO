@@ -202,10 +202,10 @@ namespace vs_project
                     if (filter.gender != "" && !w.gender.Contains(filter.gender)) continue;
 
                     // Проверка максимального стажа работы
-                    if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.maxAges) && filter.maxAges != 0) continue;
+                    if (filter.maxAges != 0 && w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.maxAges)) continue;
 
                     // Проверка минимального стажа работы
-                    if (w.dateReceiptOnWork > DateTime.Now.AddYears(-filter.minAges) && filter.minAges != 0) continue;
+                    if (filter.minAges != 0 && w.dateReceiptOnWork > DateTime.Now.AddYears(-filter.minAges)) continue;
 
                     w.Out(); // Вывод отфильтрованного работника на экран
                 }
