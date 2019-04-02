@@ -12,11 +12,7 @@ namespace vs_project
 
             // Фильтр
             Filter filter = new Filter();
-            filter.name = "";
-            filter.surname = "";
-            filter.patronymic = "";
-            filter.position = "";
-            filter.gender = "";
+            filter.init();
 
             // Бесконечный цикл работы программы
             do
@@ -191,28 +187,27 @@ namespace vs_project
                 foreach (Worker w in workers) // По работникам в списке
                 {
                     // Проверка имени
-                    if (!w.name.Contains(filter.name) && filter.name != "") continue;
+                    if (filter.name != "" && !w.name.Contains(filter.name)) continue;
 
                     // Проверка фамилии
-                    if (!w.surname.Contains(filter.surname) && filter.surname != "") continue;
+                    if (filter.surname != "" && !w.surname.Contains(filter.surname)) continue;
 
                     // Проверка отчества
-                    if (!w.patronymic.Contains(filter.patronymic) && filter.patronymic != "") continue;
+                    if (filter.patronymic != "" && !w.patronymic.Contains(filter.patronymic)) continue;
 
                     // Проверка должности
-                    if (!w.position.Contains(filter.position) && filter.position != "") continue;
+                    if (filter.position != "" && !w.position.Contains(filter.position)) continue;
 
                     // Проверка пола
-                    if (!w.gender.Contains(filter.gender) && filter.gender != "") continue;
+                    if (filter.gender != "" && !w.gender.Contains(filter.gender)) continue;
 
                     // Проверка максимального стажа работы
                     if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.maxAges) && filter.maxAges != 0) continue;
 
                     // Проверка минимального стажа работы
-                    if (w.dateReceiptOnWork <= DateTime.Now.AddYears(-filter.minAges) || filter.minAges == 0)
-                    {
-                        w.Out(); // Вывод отфильтрованного работника на экран
-                    }
+                    if (w.dateReceiptOnWork > DateTime.Now.AddYears(-filter.minAges) && filter.minAges != 0) continue;
+
+                    w.Out(); // Вывод отфильтрованного работника на экран
                 }
             }
         }
@@ -227,6 +222,18 @@ namespace vs_project
             public string position;                     // Должность
             public string gender;                       // Пол            
             public int minAges, maxAges;                // Минимальное и максимальное значение диапозона стажа
+
+
+            public void init()
+            {
+                this.name = "";
+                this.surname = "";
+                this.patronymic = "";
+                this.position = "";
+                this.gender = "";
+                this.minAges = 0;
+                this.maxAges = 0;
+            }
 
             // Изменение значения фильтра
             public void ChangeValue()
