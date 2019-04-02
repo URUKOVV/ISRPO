@@ -8,8 +8,15 @@ namespace vs_project
         static void Main(string[] args)
         {
             // Список работников
-            List<Worker> workers = new List<Worker>();           
+            List<Worker> workers = new List<Worker>();
+
+            // Фильтр
             Filter filter = new Filter();
+            filter.name = "";
+            filter.surname = "";
+            filter.patronymic = "";
+            filter.position = "";
+            filter.gender = "";
 
             // Бесконечный цикл работы программы
             do
@@ -184,27 +191,25 @@ namespace vs_project
                 foreach (Worker w in workers) // По работникам в списке
                 {
                     // Проверка имени
-                    if (filter.name != null)
-                        if (!w.name.Contains(filter.name) && filter.name != "") continue;
+                    if (!w.name.Contains(filter.name) && filter.name != "") continue;
 
                     // Проверка фамилии
-                    if (filter.surname != null)
-                        if (!w.surname.Contains(filter.surname) && filter.surname != "") continue;
+                    if (!w.surname.Contains(filter.surname) && filter.surname != "") continue;
 
                     // Проверка отчества
-                    if (filter.patronymic != null)
-                        if (!w.patronymic.Contains(filter.patronymic) && filter.patronymic != "") continue;
+                    if (!w.patronymic.Contains(filter.patronymic) && filter.patronymic != "") continue;
 
                     // Проверка должности
-                    if (filter.position != null)
-                        if (!w.position.Contains(filter.position) && filter.position != "") continue; 
+                    if (!w.position.Contains(filter.position) && filter.position != "") continue;
 
                     // Проверка пола
-                    if (filter.gender != null)
-                        if (!w.gender.Contains(filter.gender) && filter.gender != "") continue; 
+                    if (!w.gender.Contains(filter.gender) && filter.gender != "") continue;
 
-                    // Проверка стажа работы
-                    if (w.dateReceiptOnWork < DateTime.Now.AddYears(-filter.ages) || filter.ages == 0)
+                    // Проверка максимального стажа работы
+                    if (!(w.dateReceiptOnWork > DateTime.Now.AddYears(-filter.maxAges) || filter.maxAges == 0)) continue;
+
+                    // Проверка минимального стажа работы
+                    if (w.dateReceiptOnWork <= DateTime.Now.AddYears(-filter.minAges) || filter.minAges == 0)
                     {
                         w.Out(); // Вывод отфильтрованного работника на экран
                     }
@@ -221,7 +226,7 @@ namespace vs_project
             public string name, surname, patronymic;    // Имя, Фамилия, Отчество
             public string position;                     // Должность
             public string gender;                       // Пол            
-            public int ages;                           // Количество лет стажа для фильтрации
+            public int minAges, maxAges;                // Минимальное и максимальное значение диапозона стажа
 
             // Изменение значения фильтра
             public void ChangeValue()
@@ -234,7 +239,8 @@ namespace vs_project
                 Console.WriteLine($"3 - Отчество ({patronymic})");
                 Console.WriteLine($"4 - Должность ({position})");
                 Console.WriteLine($"5 - Пол ({gender})");
-                Console.WriteLine($"6 - Стаж работы ({ages})");
+                Console.WriteLine($"6 - Минимальный стаж работы ({minAges})");
+                Console.WriteLine($"7 - Максимальный стаж работы ({maxAges})");
                 Console.WriteLine($"Любое другое значение для выхода в главное меню");
 
                 // Ожидание ввода пользователя и обработка
@@ -270,14 +276,31 @@ namespace vs_project
                         gender = Console.ReadLine();
                         break;
 
-                    // Изменение значение фильтрации по стажу
+                    // Изменение минимального значения фильтрации по стажу
                     case ("6"):
                         while (true)
                         {
                             try
                             {
                                 Console.Write("\nВведите новое значение: ");
-                                ages = Int32.Parse(Console.ReadLine());
+                                minAges = Int32.Parse(Console.ReadLine());
+                                break;
+                            }
+                            catch
+                            {
+                                Console.WriteLine("\nОшибка: неверный формат");
+                            }
+                        }
+                        break;
+
+                    // Изменение максимального значения фильтрации по стажу
+                    case ("7"):
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nВведите новое значение: ");
+                                maxAges = Int32.Parse(Console.ReadLine());
                                 break;
                             }
                             catch
