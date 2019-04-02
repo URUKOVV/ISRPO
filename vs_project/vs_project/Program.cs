@@ -84,7 +84,7 @@ namespace vs_project
             public static void OutAll(ref List<Worker> list)
             {
                 Console.Clear();
-                foreach (var worker in list)
+                foreach (var worker in list)  // По работникам в списке
                 {
                     worker.Out();
                 }
