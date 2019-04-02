@@ -256,7 +256,7 @@ namespace vs_project
                     // Изменение значение фильтрации по имени
                     case ("1"):
                         Console.Write("\nВведите новое значение:");
-                        name = Console.ReadLine();
+                        name = Console.ReadLine().Trim();
                         break;
 
                     // Изменение значение фильтрации по фамилии
